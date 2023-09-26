@@ -48,3 +48,26 @@ export const productFields = [
     type: 'number'
   }
 ]
+
+export const invoiceFields = [
+  {
+    name: 'fecha',
+    label: 'Date',
+    type: 'date'
+  },
+  {
+    name: 'total_sin_iva',
+    label: 'Total without tax',
+    type: 'number'
+  },
+  {
+    name: 'total_con_iva',
+    label: 'Total with tax',
+    type: 'number'
+  },
+  {
+    name: 'nro_cliente',
+    label: 'Client ID',
+    type: 'number'
+  }
+]

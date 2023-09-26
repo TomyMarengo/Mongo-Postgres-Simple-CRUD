@@ -1,15 +1,6 @@
-// Obtener todos los clientes
 const express = require('express')
 const router = express.Router()
-const { Pool } = require('pg')
-
-const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'tpo',
-  password: '1234',
-  port: 5432
-})
+const pool = require('./connection')
 
 router.get('/', async (req, res) => {
   try {

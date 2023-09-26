@@ -3049,3 +3049,17 @@ END;
 $$ LANGUAGE plpgsql;
 
 CALL calcular_precios();
+
+
+
+-- ADDED
+CREATE VIEW e01_facturas_ordenadas_por_fecha AS
+SELECT *
+FROM e01_factura
+ORDER BY fecha;
+
+CREATE VIEW e01_productos_no_facturados AS
+SELECT pr.*
+FROM e01_producto AS pr
+LEFT JOIN e01_detalle_factura AS de ON pr.codigo_producto = de.codigo_producto
+WHERE de.codigo_producto IS NULL;
