@@ -71,3 +71,31 @@ export const invoiceFields = [
     type: 'number'
   }
 ]
+
+export const fieldMappings = {
+  // E01_Telefono
+  codigo_area: 'Area Code',
+  nro_telefono: 'Phone Number',
+  tipo: 'Type',
+  // E01_Cliente
+  nro_cliente: 'Client ID',
+  nombre: 'First Name',
+  apellido: 'Last Name',
+  direccion: 'Address',
+  activo: 'Active',
+  // E01_Factura
+  nro_factura: 'Invoice ID',
+  fecha: 'date',
+  total_sin_iva: 'Total without tax',
+  iva: 'Tax',
+  total_con_iva: 'Total with tax',
+  // E01_Detalle_Factura
+  nro_item : 'Item ID',
+  cantidad: 'Quantity',
+  // E01_Producto
+  codigo_producto: 'Product ID',
+  marca: 'Brand',
+  descripcion: 'Description',
+  precio: 'Price',
+  stock: 'Stock',
+}
