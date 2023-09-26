@@ -85,7 +85,7 @@ export const fieldMappings = {
   activo: 'Active',
   // E01_Factura
   nro_factura: 'Invoice ID',
-  fecha: 'date',
+  fecha: 'Date',
   total_sin_iva: 'Total without tax',
   iva: 'Tax',
   total_con_iva: 'Total with tax',
@@ -97,5 +97,8 @@ export const fieldMappings = {
   marca: 'Brand',
   descripcion: 'Description',
   precio: 'Price',
-  stock: 'Stock'
+  stock: 'Stock',
+  // Extra
+  total_gastado: 'Total Spent',
+  cantidad_facturas: 'Number of Invoices'
 }

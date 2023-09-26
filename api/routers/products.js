@@ -119,7 +119,7 @@ router.delete('/:id', async (req, res) => {
     console.error('Error when removing product:', error)
 
     if (error.code === '23503') {
-      res.status(500).send({ error: 'Cannot delete product because it has related invoices' })
+      res.status(500).send({ error: 'Cannot delete product because is still referenced' })
     } else {
       res.status(500).json({ error: 'Internal server error' })
     }
