@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import EntityTable from '../components/EntityTable'; // Asegúrate de importar tu componente EntityTable desde la ubicación correcta
 
 import { fieldMappings } from '../utils/fields';
+import { queries } from '../utils/queries';
 
 export default function QueriesPage({ endpoint }) {
   const [queryResults, setQueryResults] = useState({ columns: [], rows: [] });
@@ -42,14 +43,18 @@ export default function QueriesPage({ endpoint }) {
         onChange={(e) => handleQuerySelect(e.target.value)}
       >
         <option value="">Select a Query</option>
-        <option value="1">Query 1: Obtener el teléfono y el número de cliente...</option>
-        {/* Agrega más opciones para otras consultas */}
+        {/* Options for queries */}
+        {queries.map((query, index) => (
+          <option key={index + 1} value={index + 1}>
+            {query}
+          </option>
+        ))}
+        
       </select>
 
       {queryResults.columns.length > 0 && (
         <div>
           <h2>Query Results</h2>
-          {console.log(queryResults)}
           <EntityTable data={queryResults.rows} entityFields={queryResults.columns}  />
         </div>
       )}
