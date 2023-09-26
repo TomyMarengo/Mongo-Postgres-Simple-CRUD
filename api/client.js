@@ -15,12 +15,12 @@ router.get('/', async (req, res) => {
   try {
     const client = await pool.connect()
     const result = await client.query('SELECT * FROM e01_cliente ORDER BY nro_cliente ASC')
-    const clientes = result.rows
+    const clients = result.rows
     client.release()
-    res.json(clientes)
+    res.json(clients)
   } catch (error) {
-    console.error('Error al obtener clientes:', error)
-    res.status(500).json({ error: 'Error interno del servidor' })
+    console.error('Error when getting clients:', error)
+    res.status(500).json({ error: 'Internal server error' })
   }
 })
 
@@ -28,7 +28,7 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
   const { nombre, apellido, direccion, activo } = req.body
   if (!nombre || !apellido || !direccion || !activo) {
-    return res.status(400).json({ error: 'Se requieren todos los campos' })
+    return res.status(400).json({ error: 'All fields are required' })
   }
 
   try {
@@ -36,18 +36,18 @@ router.post('/', async (req, res) => {
     const result = await client.query('INSERT INTO e01_cliente (nombre, apellido, direccion, activo) VALUES ($1, $2, $3, $4) RETURNING *',
       [nombre, apellido, direccion, activo])
 
-    const nuevoCliente = result.rows[0]
+    const newClient = result.rows[0]
     client.release()
-    res.status(201).json(nuevoCliente)
+    res.status(201).json(newClient)
   } catch (error) {
-    console.error('Error al agregar cliente:', error)
-    res.status(500).json({ error: 'Error interno del servidor' })
+    console.error('Error when adding client:', error)
+    res.status(500).json({ error: 'Internal server error' })
   }
 })
 
 // Actualizar un cliente existente
 router.put('/:id', async (req, res) => {
-  const clienteId = req.params.id
+  const clientId = req.params.id
   const { nombre, apellido, direccion, activo } = req.body
 
   try {
@@ -78,11 +78,11 @@ router.put('/:id', async (req, res) => {
     if (updateFields.length === 0) {
       // Si no se proporcionan campos para actualizar, devuelve un error 400
       client.release()
-      return res.status(400).json({ error: 'Se debe proporcionar al menos un campo para actualizar' })
+      return res.status(400).json({ error: 'One or more fields are required' })
     }
 
     // updateValues.length es el ID del cliente
-    updateValues.push(clienteId)
+    updateValues.push(clientId)
 
     const updateQuery = `UPDATE e01_cliente SET ${updateFields.join(', ')} WHERE nro_cliente = $${updateValues.length} RETURNING *`
 
@@ -91,42 +91,42 @@ router.put('/:id', async (req, res) => {
     if (result.rows.length === 0) {
       // Si no se encuentra un cliente con ese ID, devuelve un error 404
       client.release()
-      return res.status(404).json({ error: 'Cliente no encontrado' })
+      return res.status(404).json({ error: 'Client not found' })
     }
 
-    const clienteActualizado = result.rows[0]
+    const updatedClient = result.rows[0]
     client.release()
-    res.json(clienteActualizado)
+    res.json(updatedClient)
   } catch (error) {
-    console.error('Error al actualizar cliente:', error)
-    res.status(500).json({ error: 'Error interno del servidor' })
+    console.error('Error when updating client:', error)
+    res.status(500).json({ error: 'Internal server error' })
   }
 })
 
 // Eliminar un cliente por su ID
 router.delete('/:id', async (req, res) => {
-  const clienteId = req.params.id
+  const clientId = req.params.id
 
   try {
     const client = await pool.connect()
-    const result = await client.query('DELETE FROM e01_cliente WHERE nro_cliente = $1 RETURNING *', [clienteId])
+    const result = await client.query('DELETE FROM e01_cliente WHERE nro_cliente = $1 RETURNING *', [clientId])
 
     if (result.rows.length === 0) {
       // Si no se encuentra un cliente con ese ID, devuelve un error 404
       client.release()
-      return res.status(404).json({ error: 'Cliente no encontrado' })
+      return res.status(404).json({ error: 'Client not found' })
     }
 
-    const clienteEliminado = result.rows[0]
+    const deletedClient = result.rows[0]
     client.release()
-    res.json({ message: 'Cliente eliminado satisfactoriamente', cliente: clienteEliminado })
+    res.json({ message: 'Client deleted', client: deletedClient })
   } catch (error) {
-    console.error('Error al eliminar cliente:', error)
+    console.error('Error when removing client:', error)
 
     if (error.code === '23503') {
-      res.status(500).send('El cliente todavía tiene facturas asociadas')
+      res.status(500).send({ error: 'Cannot delete client because it has related invoices' })
     } else {
-      res.status(500).json({ error: 'Error interno del servidor' })
+      res.status(500).json({ error: 'Internal server error' })
     }
   }
 })
