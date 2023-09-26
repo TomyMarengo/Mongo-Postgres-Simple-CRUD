@@ -22,7 +22,7 @@ export default function EntityTable ({
       </thead>
       <tbody>
         {data.map((item, index) => (
-          <tr className="align-middle" key={index}>
+          <tr className='align-middle' key={index}>
             {entityFields.map((field) => (
               <td key={field.name}>{item[field.name]}</td>
             ))}

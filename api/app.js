@@ -3,10 +3,10 @@ const cors = require('cors')
 const app = express()
 const port = process.env.PORT || 3000
 
-const clientRoutes = require('./clients')
-const productRoutes = require('./products')
-const viewsRoutes = require('./views')
-const queriesRoutes = require('./queries')
+const clientRoutes = require('./routers/clients')
+const productRoutes = require('./routers/products')
+const viewsRoutes = require('./routers/views')
+const queriesRoutes = require('./routers/queries')
 
 app.use(cors())
 

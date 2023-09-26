@@ -90,12 +90,12 @@ export const fieldMappings = {
   iva: 'Tax',
   total_con_iva: 'Total with tax',
   // E01_Detalle_Factura
-  nro_item : 'Item ID',
+  nro_item: 'Item ID',
   cantidad: 'Quantity',
   // E01_Producto
   codigo_producto: 'Product ID',
   marca: 'Brand',
   descripcion: 'Description',
   precio: 'Price',
-  stock: 'Stock',
+  stock: 'Stock'
 }
