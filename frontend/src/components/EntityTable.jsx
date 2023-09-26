@@ -22,11 +22,11 @@ export default function EntityTable ({
       </thead>
       <tbody>
         {data.map((item, index) => (
-          <tr key={index}>
+          <tr className="align-middle" key={index}>
             {entityFields.map((field) => (
               <td key={field.name}>{item[field.name]}</td>
             ))}
-            {handleEdit && handleDelete && <td className='d-flex justify-content-around flex-wrap'>
+            {handleEdit && handleDelete && <td className='d-flex justify-content-center gap-3 flex-wrap'>
               <button
                 onClick={() => handleEdit(item)}
                 className='btn btn-warning'

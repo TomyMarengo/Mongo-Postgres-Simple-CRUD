@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Container } from 'react-bootstrap'
 import PropTypes from 'prop-types'
 
@@ -10,6 +10,10 @@ export default function ViewsPage ({ endpoint }) {
   const [orderedInvoices, setOrderedInvoices] = useState([])
   const [uninvoicedProducts, setUninvoicedProducts] = useState([])
   const [activeTable, setActiveTable] = useState(null)
+
+  useEffect(() => { // Fetch the data when the component mounts
+    fetchOrderedInvoices()
+  }, [])
 
   const fetchOrderedInvoices = async () => {
     try {
