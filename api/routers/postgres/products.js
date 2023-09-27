@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const pool = require('../connection')
+const pool = require('../../connections/postgresConfig')
 
 router.get('/', async (req, res) => {
   try {

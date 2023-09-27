@@ -124,7 +124,7 @@ export default function EntityPage ({ entityFields, entityName, endpoint }) {
           position: 'top-center'
         })
       )
-  }, [])
+  }, [endpoint])
 
   return (
     <Container>

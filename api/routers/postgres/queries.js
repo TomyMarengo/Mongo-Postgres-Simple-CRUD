@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const pool = require('../connection')
+const pool = require('../../connections/postgresConfig')
 
 const queries = [
   // Query 1

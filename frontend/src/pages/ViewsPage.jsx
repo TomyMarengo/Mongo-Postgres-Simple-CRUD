@@ -9,11 +9,12 @@ import { formatCurrency, formatDate } from '../utils/utils'
 export default function ViewsPage ({ endpoint }) {
   const [orderedInvoices, setOrderedInvoices] = useState([])
   const [uninvoicedProducts, setUninvoicedProducts] = useState([])
-  const [activeTable, setActiveTable] = useState(null)
+  const [activeTable, setActiveTable] = useState('ordered-invoices')
 
   useEffect(() => { // Fetch the data when the component mounts
-    fetchOrderedInvoices()
-  }, [])
+    if (activeTable === 'ordered-invoices') fetchOrderedInvoices()
+    else if (activeTable === 'uninvoiced-products') fetchUninvoicedProducts()
+  }, [endpoint])
 
   const fetchOrderedInvoices = async () => {
     try {

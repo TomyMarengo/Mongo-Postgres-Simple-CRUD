@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container } from 'react-bootstrap'
 import PropTypes from 'prop-types'
 import EntityTable from '../components/EntityTable' // Asegúrate de importar tu componente EntityTable desde la ubicación correcta
@@ -8,12 +8,15 @@ import { queries } from '../utils/queries'
 
 export default function QueriesPage ({ endpoint }) {
   const [queryResults, setQueryResults] = useState({ columns: [], rows: [] })
+  const [queryNumber, setQueryNumber] = useState('') // Estado para almacenar el número de consulta seleccionado
 
   const handleQuerySelect = async (queryNumber) => {
     if (!queryNumber) return
 
+    setQueryNumber(queryNumber)
+
     try {
-      const response = await fetch(`${endpoint}/${queryNumber}`) // Reemplaza '/api/queries' con la ruta correcta hacia tus rutas de consultas en la API
+      const response = await fetch(`${endpoint}/${queryNumber}`)
       const data = await response.json()
 
       // Verifica si la respuesta contiene datos
@@ -32,6 +35,10 @@ export default function QueriesPage ({ endpoint }) {
       console.error('Error executing query:', error)
     }
   }
+
+  useEffect(() => { // Fetch the data when the component mounts
+    if (queryNumber) handleQuerySelect(queryNumber)
+  }, [endpoint])
 
   return (
     <Container>
