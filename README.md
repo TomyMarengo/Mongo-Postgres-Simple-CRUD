@@ -28,3 +28,16 @@ The app includes the following features:
 
 If you encounter any issues while using the app, please report them to [tmarengo@itba.edu.ar].
 
+
+## Troubleshooting
+
+If you have any issues while using the app, try the following:
+
+- [Troubleshooting 1] - Make sure you have the latest version of Docker installed and running.
+- [Troubleshooting 2] - Make sure you have the latest version of Docker Compose installed.
+- [Troubleshooting 3] - Try restarting Docker.
+- [Troubleshooting 4] - Try docker-compose down --rmi all to remove all images and containers and then docker-compose build and docker-compose up again.
+- [Troubleshooting 5] - Check if the ports 8080 and 3000 are being used by other processes and kill them if necessary.
+- [Troubleshooting 6] - Check if you have any other containers running and kill them if necessary.
+- [Troubleshooting 7] - Check if you have any other images, volumes or networks and remove them if necessary.
+- [Troubleshooting 8] - Check if you have another database with the same name and remove it if necessary.
