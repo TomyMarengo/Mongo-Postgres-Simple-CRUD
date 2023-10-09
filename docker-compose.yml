@@ -55,8 +55,21 @@ services:
       - frontend
     depends_on:
       - api
-    
 
+  migration:
+    container_name: migration
+    restart: on-failure
+    build:
+      context: api
+      dockerfile: Dockerfile
+    command: node migrateData.js
+    networks:
+      - backend
+    depends_on:
+      - postgres
+      - mongo
+      - api
+  
 networks:
   backend:
   frontend:
