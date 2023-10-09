@@ -1,12 +1,8 @@
 // mongoConfig.js
-
 const mongoose = require('mongoose')
 
-// Define la URL de conexión a tu instancia de MongoDB
-const mongoURL = 'mongodb://localhost:27017/tpo'
-
 // Realiza la conexión a MongoDB
-mongoose.connect(mongoURL, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://mongo:27017/tpo', { useNewUrlParser: true, useUnifiedTopology: true })
 
 // Maneja eventos de conexión y errores
 const db = mongoose.connection

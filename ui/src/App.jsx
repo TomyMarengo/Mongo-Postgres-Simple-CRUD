@@ -18,6 +18,8 @@ export default function App () {
     setSelectedDB(selectedDB === 'postgres' ? 'mongo' : 'postgres')
   }
 
+  const baseUrl = 'http://localhost:3000'
+
   return (
     <Router>
       <Navbar expand='lg' className='bg-primary'>
@@ -68,7 +70,8 @@ export default function App () {
             <EntityPage
               entityName='Client'
               entityFields={clientFields}
-              endpoint={`http://localhost:3000/${selectedDB}/clients`}
+              
+              endpoint={`${baseUrl}/${selectedDB}/clients`}
             />
           }
         />
@@ -78,21 +81,21 @@ export default function App () {
             <EntityPage
               entityName='Product'
               entityFields={productFields}
-              endpoint={`http://localhost:3000/${selectedDB}/products`}
+              endpoint={`${baseUrl}/${selectedDB}/products`}
             />
           }
         />
         <Route
           path='/views'
           element={
-            <ViewsPage endpoint={`http://localhost:3000/${selectedDB}/views`} />
+            <ViewsPage endpoint={`${baseUrl}/${selectedDB}/views`} />
           }
         />
         <Route
           path='/queries'
           element={
             <QueriesPage
-              endpoint={`http://localhost:3000/${selectedDB}/queries`}
+              endpoint={`${baseUrl}/${selectedDB}/queries`}
             />
           }
         />

@@ -98,7 +98,7 @@ export const fieldMappings = {
   descripcion: 'Description',
   precio: 'Price',
   stock: 'Stock',
-  // Extra
+  // Views
   total_gastado: 'Total Spent',
   cantidad_facturas: 'Number of Invoices'
 }

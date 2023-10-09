@@ -1,0 +1,8 @@
+# Ignore files and directories
+node_modules
+.git
+.DS_Store
+
+# Ignore specific files
+README.md
+LICENSE

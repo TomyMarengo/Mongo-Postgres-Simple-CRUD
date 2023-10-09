@@ -1,7 +1,6 @@
 const express = require('express')
 const cors = require('cors')
 const app = express()
-const port = process.env.PORT || 3000
 
 const postgresClientsRoutes = require('./routers/postgres/clients')
 const postgresProductsRoutes = require('./routers/postgres/products')
@@ -13,7 +12,6 @@ const mongoViewsRoutes = require('./routers/mongo/views')
 const mongoQueriesRoutes = require('./routers/mongo/queries')
 
 app.use(cors())
-
 app.use(express.json())
 
 app.use('/postgres/clients', postgresClientsRoutes)
@@ -25,6 +23,7 @@ app.use('/mongo/products', mongoProductsRoutes)
 app.use('/mongo/views', mongoViewsRoutes)
 app.use('/mongo/queries', mongoQueriesRoutes)
 
-app.listen(port, () => {
-  console.log(`API listening in ${port}`)
+const PORT = process.env.NODE_PORT || 3000
+app.listen(PORT, () => {
+  console.log(`API listening in ${PORT}`)
 })
