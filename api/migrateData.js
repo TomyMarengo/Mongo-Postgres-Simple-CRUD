@@ -21,9 +21,9 @@ async function migrateData () {
       await Cliente.insertMany(clientesMongoData, { ordered: false })
     } catch (error) {
       if (error.code === 11000) {
-        console.log('Some invoices were already migrated')
+        console.log('Some clients were already migrated')
       } else {
-        console.error('Error migrating invoices', error)
+        console.error('Error migrating clients', error)
         process.exit(1)
       }
     }
@@ -44,9 +44,9 @@ async function migrateData () {
       await Producto.insertMany(productosMongoData, { ordered: false })
     } catch (error) {
       if (error.code === 11000) {
-        console.log('Some invoices were already migrated')
+        console.log('Some products were already migrated')
       } else {
-        console.error('Error migrating invoices', error)
+        console.error('Error migrating products', error)
         process.exit(1)
       }
     }
