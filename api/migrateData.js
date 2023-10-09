@@ -96,5 +96,12 @@ async function createViews () {
 }
 
 migrateData().then(() => {
-  createViews()
+  createViews().then(() => {
+    mongoose.connection.close()
+    console.log('Data migrated successfully')
+    process.exit(0)
+  })
+}).catch((error) => {
+  console.error('Error migrating', error)
+  process.exit(1)
 })
