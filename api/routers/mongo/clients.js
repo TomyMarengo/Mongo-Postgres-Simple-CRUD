@@ -21,13 +21,23 @@ router.post('/', async (req, res) => {
   }
 
   try {
+    // Find the highest _id currently in the database
+    const cl = await Cliente.find().sort({ _id: -1 }).limit(1)
+    let newId = 0
+    if (cl.length > 0) {
+      newId = cl[0]._id + 1
+    }
+
+    // Create the new client with the new _id
     const newClient = await Cliente.create({
+      _id: newId,
       nombre,
       apellido,
       direccion,
       activo
     })
 
+    console.info('New client added to MongoDB:', newClient)
     res.status(201).json(newClient)
   } catch (error) {
     console.error('Error when adding client to MongoDB:', error)

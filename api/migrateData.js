@@ -16,7 +16,17 @@ async function migrateData () {
       activo: cliente.activo,
       telefonos: cliente.telefonos || []
     }))
-    await Cliente.insertMany(clientesMongoData)
+
+    try {
+      await Cliente.insertMany(clientesMongoData, { ordered: false })
+    } catch (error) {
+      if (error.code === 11000) {
+        console.log('Some invoices were already migrated')
+      } else {
+        console.error('Error migrating invoices', error)
+        process.exit(1)
+      }
+    }
 
     // PRODUCTS
     const productsQuery = 'SELECT * FROM E01_producto'
@@ -29,7 +39,17 @@ async function migrateData () {
       precio: producto.precio,
       stock: producto.stock
     }))
-    await Producto.insertMany(productosMongoData)
+
+    try {
+      await Producto.insertMany(productosMongoData, { ordered: false })
+    } catch (error) {
+      if (error.code === 11000) {
+        console.log('Some invoices were already migrated')
+      } else {
+        console.error('Error migrating invoices', error)
+        process.exit(1)
+      }
+    }
 
     // INVOICES
     const invoicesQuery = 'SELECT f.nro_factura, f.fecha, f.total_sin_iva, f.total_con_iva, f.nro_cliente, COALESCE(json_agg(json_build_object(\'cantidad\', d.cantidad, \'codigo_producto\', d.codigo_producto)) FILTER (WHERE codigo_producto IS NOT NULL), \'[]\') as productos_comprados FROM e01_factura f LEFT JOIN e01_detalle_factura d ON f.nro_factura = d.nro_factura GROUP BY f.nro_factura'
@@ -47,7 +67,16 @@ async function migrateData () {
     }))
 
     // Insertar datos en MongoDB
-    await Factura.insertMany(invoicesMongoData)
+    try {
+      await Factura.insertMany(invoicesMongoData, { ordered: false })
+    } catch (error) {
+      if (error.code === 11000) {
+        console.log('Some invoices were already migrated')
+      } else {
+        console.error('Error migrating invoices', error)
+        process.exit(1)
+      }
+    }
   } catch (error) {
     console.error('Error migrating', error)
     process.exit(1)

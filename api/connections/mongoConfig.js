@@ -2,7 +2,7 @@
 const mongoose = require('mongoose')
 
 // Realiza la conexión a MongoDB
-mongoose.connect('mongodb://mongo:27017/tpo', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://mongo:27017/tpo-marengo', { useNewUrlParser: true, useUnifiedTopology: true })
 
 // Maneja eventos de conexión y errores
 const db = mongoose.connection

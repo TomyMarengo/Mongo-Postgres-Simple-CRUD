@@ -21,7 +21,16 @@ router.post('/', async (req, res) => {
   }
 
   try {
+    // Find the last product in the collection and get its _id
+    const pr = await Producto.find().sort({ _id: -1 }).limit(1)
+    let newId = 0
+    if (pr.length > 0) {
+      newId = pr[0]._id + 1
+    }
+
+    // Create the new product with the first available _id
     const newProduct = await Producto.create({
+      _id: newId,
       marca,
       nombre,
       descripcion,
@@ -29,6 +38,7 @@ router.post('/', async (req, res) => {
       stock
     })
 
+    console.info('New product added to MongoDB:', newProduct)
     res.status(201).json(newProduct)
   } catch (error) {
     console.error('Error when adding product to MongoDB:', error)
