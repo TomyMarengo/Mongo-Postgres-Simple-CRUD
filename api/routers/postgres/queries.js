@@ -28,7 +28,7 @@ const queries = [
   'SELECT E01_Factura.* FROM E01_Factura INNER JOIN E01_Detalle_Factura ON E01_Factura.nro_factura = E01_Detalle_Factura.nro_factura INNER JOIN E01_Producto ON E01_Detalle_Factura.codigo_producto = E01_Producto.codigo_producto WHERE E01_Producto.marca = \'In Faucibus Inc.\'',
 
   // Query 9
-  'SELECT E01_Telefono.*, E01_Cliente.nombre, E01_Cliente.apellido FROM E01_Telefono INNER JOIN E01_Cliente ON E01_Telefono.nro_cliente = E01_Cliente.nro_cliente',
+  'SELECT E01_Telefono.*, E01_Cliente.nombre, E01_Cliente.apellido FROM E01_Telefono LEFT JOIN E01_Cliente ON E01_Telefono.nro_cliente = E01_Cliente.nro_cliente',
 
   // Query 10
   'SELECT E01_Cliente.nombre, E01_Cliente.apellido, COALESCE(SUM(E01_Factura.total_con_iva),0) AS total_gastado FROM E01_Cliente LEFT JOIN E01_Factura ON E01_Cliente.nro_cliente = E01_Factura.nro_cliente GROUP BY E01_Cliente.nro_cliente'

@@ -1,0 +1,667 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{caption}
+\usepackage{amsfonts, amsmath, amssymb, enumitem, authblk, times, amsmath, graphicx, placeins, indentfirst, pdfpages, fancyhdr, titling, listings} 
+\usepackage{hyperref}
+\usepackage[justification=centering]{caption}
+\setlength{\textwidth}{180mm}
+\setlength{\textheight}{250mm}
+\setlength{\oddsidemargin}{-10mm}
+\setlength{\evensidemargin}{15mm}
+\setlength{\topmargin}{-10mm}
+
+\renewcommand{\baselinestretch}{1.4}
+\renewcommand{\headrulewidth}{0.5pt}
+
+\lhead{\begin{picture}(0,0) \put(0,0){\includegraphics[width=20mm]{./LogoITBA}} \end{picture}}
+\renewcommand{\headrulewidth}{0.5pt}
+
+\lstset {numbers = left, numberstyle = \tiny,
+	emph = {WHERE, FROM, AND, OR, NATURAL, JOIN, LEFT, RIGHT, INNER, SELECT, COALESCE, SUM, GROUP, BY, \$unwind, \$lookup, \$group, \$project, \$unset, \$match, \$sum, \$\_id, push, return, const, find, Cliente, Producto, aggregate, Factura},
+	emphstyle = \bfseries,
+	morecomment = [l] [\itshape] {\%},
+	morecomment = [l] [\slshape] {disp},
+}  
+
+
+\pagestyle{fancy}
+	
+\begin{document}
+
+	\begin{titlepage}
+		\centering
+		{\includegraphics[width=0.50\textwidth]{LogoITBA}\par}
+		\vspace{1cm}
+		{\bfseries\LARGE Instituto Tecnol\'ogico de Buenos Aires \par}
+		\vspace{2cm}
+		{\scshape\Huge Trabajo Práctico Obligatorio \par}
+		\vspace{2cm}
+		{\itshape\Large 72.41 - Bases de Datos II - 2023 2Q \par}
+		\vfill
+		{\Large Autor: \par}
+		{\Large Tom\'as Marengo - 61587 \par}
+		{\Large tmarengo@itba.edu.ar \par}	
+		\vfill
+	\end{titlepage}
+
+	\newpage
+	\tableofcontents
+	\newpage
+	
+	\section{Introducción}
+	Este informe documenta el proceso de desarrollo de un sistema de facturación en el contexto del trabajo práctico de Bases de Datos 2. El objetivo principal del proyecto es abordar las consignas proporcionadas, que incluyen la implementación de consultas SQL y NoSQL, vistas específicas, migración de SQL a una base de datos NoSQL y la creación de una API para la gestión de clientes y productos. El proyecto se centra en estas tareas particulares, sin abordar la implementación completa de un sistema de facturación.
+
+	\newpage
+	
+	\section{Estructura del Proyecto. Carpetas y Archivos Importantes}
+	
+	El proyecto se organizó en una estructura de carpetas y archivos que facilita la gestión y el desarrollo de las diferentes partes del sistema. A continuación, se presenta una descripción general de la estructura:
+	
+	\begin{enumerate}
+		\item \textbf{api:} Esta carpeta contiene el código fuente de la API desarrollada utilizando Node.js y Express. Los archivos y carpetas importantes dentro de esta estructura son:
+		\begin{enumerate}
+			\item \textbf{app.js:} El archivo principal de la aplicación Node.js donde se configuran las rutas y se inicia el servidor.
+			
+			\item \textbf{routers/mongo y routers/postgres:} Carpetas que contienen los archivos de enrutamiento para las rutas relacionadas con las bases de datos MongoDB y PostgreSQL, respectivamente. Estos archivos definen los endpoints para las diferentes secciones de la página web en cada base de datos.
+			
+			\item \textbf{models/mongoModels.js:} Un archivo que define los esquemas (schemas) de datos de MongoDB para representar clientes, productos y otros objetos en el sistema. Estos modelos son utilizados para interactuar con la base de datos MongoDB.
+			
+			\item \textbf{connections/mongoConfig.js y connections/postgresConfig.js:} Archivos de configuración que contienen información sobre la conexión a las bases de datos MongoDB y PostgreSQL. Es importante mencionar que las contraseñas y los usuarios están hardcodeados en estos archivos, los mismos que se utilizan en el docker-compose.yml.
+			
+			\item \textbf{migrateData.js:} Un script utilizado para realizar la migración de datos desde la base de datos SQL a la base de datos NoSQL MongoDB. Este script se encarga de extraer y transformar los datos de SQL antes de insertarlos en MongoDB. Cuando la migración se ha realizado con éxito, se mostrará un mensaje de registro (console.log) indicando que la migración se completó. Si se vuelve a generar el container, se intenta migrar pero se manejan los errores.
+		\end{enumerate}
+		\item \textbf{ui:} Esta carpeta contiene la interfaz de usuario (UI) desarrollada en React. Los archivos y carpetas importantes son:
+		\begin{enumerate}
+			\item \textbf{components/:} Una carpeta que contiene componentes reutilizables de React. Estos componentes pueden ser utilizados en diferentes partes de la aplicación para mantener un código limpio y modular.
+			
+			\item \textbf{pages/:} Una carpeta que contiene componentes de React que representan páginas específicas de la aplicación. Cada página puede estar compuesta por varios componentes y se utiliza para mostrar contenido específico al usuario.
+			
+			\item \textbf{utils/:} Una carpeta que contiene archivos de utilidad o funciones que pueden ser utilizadas en diferentes partes de la aplicación. Estos archivos pueden incluir funciones de ayuda, utilidades de formato de datos u otras funcionalidades compartidas.
+			
+			\item \textbf{app.jsx:} El archivo principal de la aplicación React. En este archivo, se configuran las rutas y se define la estructura principal de la aplicación React. Incluye la navegación entre páginas, la administración del estado de la aplicación y la renderización de componentes principales.
+		\end{enumerate}
+	\end{enumerate}
+
+	\newpage
+	
+	\section{Migración a NoSQL}
+	
+	\textbf{Migración a NoSQL en MongoDB:}
+	
+		\begin{enumerate}
+			
+		\item Creación del Esquema en MongoDB: Se definieron esquemas de documentos en MongoDB para reflejar las tablas SQL del sistema. Algunas entidades se embebieron, como los teléfonos dentro de los clientes (se entiende que no puede haber teléfonos sueltos ya que lo que queremos es la información de los clientes).
+		
+		\item Conexión a MongoDB: Se configuró la conexión utilizando Mongoose.
+		
+		\item Migración de Datos: Se implementó un script para transferir datos desde PostgreSQL a MongoDB, utilizando la API de PostgreSQL.
+		
+		\item Actualización de la API de MongoDB: Los endpoints de la API se adaptaron para utilizar los esquemas de MongoDB.
+		
+		\end{enumerate}
+
+	\textbf{Creación de Vistas en MongoDB luego de la migración:}
+	
+		\begin{enumerate}
+			
+		\item Vista de Facturas Ordenadas por Fecha: Se creó una vista para acceder a las facturas ordenadas cronológicamente.
+		
+		\item Vista de Productos no Facturados: Se implementó una vista que lista los productos disponibles en el inventario y no vendidos.
+		
+		\end{enumerate}
+	
+	\newpage
+	
+	
+	
+	\section{Implementación y uso de la API}
+	
+	A continuación, se detallan los endpoints disponibles y cómo utilizarlos:
+	
+	\subsection{Endpoints de la API}
+	
+	Los endpoints de la API se pueden acceder a través de la URL base http://localhost:3000/postgres/... ó http://localhost:3000/mongo/..., según la base de datos seleccionada. A continuación, se describen los endpoints específicos:
+	
+	\subsection{Consultas}
+	
+	\textbf{Ejecutar consulta: GET /queries/\{número\}}
+	
+	\bigskip
+	
+	Se reemplaza {número} por el número de la consulta que se desea ejecutar (del 1 al 10 según la consigna). Los resultados de la consulta se devolverán como respuesta.
+	
+	\bigskip
+	
+	Para lograr que las consultas den igual en Mongo, se utilizaron distintas funciones de agregación que se pueden ver \textit{/api/routers/mongo/queries.js}.
+	
+	\subsection{Vistas}
+	
+	\textbf{Facturas ordenadas por fecha: GET /views/ordered-invoices}
+	
+	\bigskip
+	
+	Al acceder a este endpoint, obtendrás un conjunto de datos que muestra las facturas ordenadas por fecha.
+	
+	\bigskip
+	
+	\textbf{Productos no facturados: GET /views/uninvoiced-products}
+	
+	\bigskip
+	
+	Este endpoint proporciona una lista de productos que aún no han sido facturados.
+	
+	
+	\subsection{CRUD para Clientes}
+	
+	\textbf{Crear cliente: POST /clients}
+	
+	\bigskip
+	
+	Utilizá este endpoint para crear un nuevo cliente en la base de datos. Se deben proveer los datos de los clientes en formato JSON en el body \{nro\_cliente ó \_id, activo, apellido, direccion, nombre\}.
+	\textit{(\_id para Mongo)}.
+	
+	\bigskip
+	
+	\textbf{Obtener clientes: GET /clients}
+	
+	\bigskip
+	
+	Accedé a este endpoint para obtener la lista de clientes.
+	
+	\bigskip
+	\bigskip
+	
+	\textbf{Actualizar cliente: PUT /clients/\{id\}}
+	
+	\bigskip
+	
+	Podés utilizar este endpoint para actualizar la información de un cliente existente. Proporciona los datos actualizados en el cuerpo de la solicitud en formato JSON y especifica el ID del cliente a actualizar.
+	
+	\bigskip
+	
+	\textbf{Eliminar cliente: DELETE /clients/\{id\}}
+	
+	\bigskip
+	
+	Este endpoint te permite eliminar un cliente de la base de datos según su ID. Reemplaza {id} por el ID del cliente que deseas eliminar.
+	
+	
+	\subsection{CRUD para Productos}
+	
+	Análogo al CRUD de clientes, pero con body \{codigo\_producto ó \_id, descripcion, nombre, marca, precio, stock\}.
+	\textit{(\_id para Mongo)}.
+	
+	
+	
+	
+	
+	
+	
+	
+	\newpage
+	
+	\section{Uso de la Página}
+	
+	Cómo sacar el máximo provecho de esta plataforma:
+	
+	\begin{enumerate}
+		
+		\item \textbf{Home:} La página de inicio te dará la bienvenida con información general del sistema.
+		
+		\item \textbf{Clients:} En esta sección, podés ver, crear, modificar o eliminar clientes (Extra: también se puede en Mongo! y probablemente te deje hacer más cosas al no tener las restricciones de SQL).
+		
+		\item \textbf{Products:} Podrás administrar tu inventario de productos. Agregá nuevos productos o actualizá los existentes (Extra: también se puede en Mongo!).
+		
+		\item \textbf{Views:} Explorá vistas personalizadas de tus datos. Acceso rápido a las facturas ordenadas por fecha o los productos que aún no han sido facturados.
+		
+		\item \textbf{Queries:} Realizá consultas para obtener información detallada sobre clientes, facturas, etc.
+		
+	\end{enumerate}
+	
+	Notarás un botón en la barra de navegación que te permite alternar entre Postgres y MongoDB. Después de navegar a una sección, el sistema vuelve automáticamente a la base de datos Postgres. ¡No te preocupes! Podés hacer clic en el botón nuevamente para volver a MongoDB.
+	
+	\bigskip
+	
+	Lamentablemente, no llegué a implementar una función que mantenga tu elección de base de datos entre páginas (aún no aprendí UseContext en React :( ). Así que, para cambiar, simplemente hacé clic en el botón de nuevo para cambiar a Mongo.
+	
+	
+	\newpage
+	
+	\section{Dockerización del Proyecto}
+	
+	El proyecto se dockerizó utilizando Docker Compose para gestionar los contenedores de las bases de datos SQL (PostgreSQL), NoSQL (MongoDB), la API Node.js y la interfaz de usuario React. La dockerización se realizó para simplificar la gestión de dependencias, el despliegue y la configuración del entorno de desarrollo y producción.
+	
+	\bigskip
+	
+	En el archivo docker-compose.yml, se definieron los servicios de contenedor necesarios para cada componente del proyecto. Se configuraron los volúmenes, las redes y las variables de entorno para conectar y orquestar estos servicios de contenedor de manera eficiente.
+	
+	\bigskip
+	
+	Así que, con \textit{docker-compose build} y luego \textit{docker-compose up}, el sistema ya estará listo y se podrá visitar en \textit{localhost:8080/}. 
+	
+	\bigskip
+		
+	Para más información, leer el README del \href{https://github.com/TomyMarengo/bd2-tpo}{\underline{{\textbf{repositorio}}}}.
+	
+	\newpage
+	
+	\section{Consultas}
+	
+	\subsection{PostgreSQL}
+	
+	\begin{lstlisting}[frame=single, tabsize=1]
+		// Query 1
+		SELECT codigo_area, nro_telefono, nro_cliente FROM E01_Telefono 
+		NATURAL JOIN E01_Cliente WHERE nombre = \'Wanda\' AND 
+		apellido = \'Baker\'
+	\end{lstlisting}
+
+	\bigskip
+
+	\begin{lstlisting}[frame=single, tabsize=1]
+		// Query 2
+		SELECT * FROM E01_Cliente WHERE nro_cliente IN (SELECT DISTINCT
+		nro_cliente FROM E01_Factura)
+	\end{lstlisting}
+
+	\bigskip
+
+	\begin{lstlisting}[frame=single, tabsize=1]
+		// Query 3
+		SELECT * FROM E01_Cliente WHERE nro_cliente NOT IN (SELECT DISTINCT
+		nro_cliente FROM E01_Factura)
+	\end{lstlisting}
+
+	\bigskip
+
+	\begin{lstlisting}[frame=single, tabsize=1]
+		// Query 4
+		SELECT DISTINCT E01_Producto.* FROM E01_Producto INNER JOIN
+		E01_Detalle_Factura ON E01_Producto.codigo_producto =
+		E01_Detalle_Factura.codigo_producto
+	\end{lstlisting}
+
+	\bigskip
+
+	\begin{lstlisting}[frame=single, tabsize=1]
+		// Query 5
+		SELECT E01_Cliente.*, E01_Telefono.* FROM E01_Cliente LEFT JOIN
+		E01_Telefono ON E01_Cliente.nro_cliente = E01_Telefono.nro_cliente
+	\end{lstlisting}
+
+	\bigskip
+
+	\begin{lstlisting}[frame=single, tabsize=1]
+		// Query 6
+		SELECT E01_Cliente.*, COUNT(E01_Factura.nro_factura) AS
+		cantidad_facturas FROM E01_Cliente LEFT JOIN E01_Factura ON
+		E01_Cliente.nro_cliente = E01_Factura.nro_cliente GROUP BY
+		E01_Cliente.nro_cliente
+	\end{lstlisting}
+
+	\newpage
+	
+	\begin{lstlisting}[frame=single, tabsize=1]
+		// Query 7
+		SELECT E01_Factura.* FROM E01_Factura NATURAL JOIN E01_Cliente 
+		WHERE E01_Cliente.nombre = \'Pandora\' AND 
+		E01_Cliente.apellido = \'Tate\'
+	\end{lstlisting}
+
+	\bigskip
+
+	\begin{lstlisting}[frame=single, tabsize=1]
+		// Query 8
+		SELECT E01_Factura.* FROM E01_Factura INNER JOIN 
+		E01_Detalle_Factura ON E01_Factura.nro_factura =
+		E01_Detalle_Factura.nro_factura INNER JOIN
+		E01_Producto ON E01_Detalle_Factura.codigo_producto =
+		E01_Producto.codigo_producto WHERE E01_Producto.marca = 
+		\'In Faucibus Inc.\'
+	\end{lstlisting}
+
+	\bigskip
+
+	\begin{lstlisting}[frame=single, tabsize=1]
+		// Query 9
+		SELECT E01_Telefono.*, E01_Cliente.nombre, E01_Cliente.apellido 
+		FROM E01_Telefono LEFT JOIN E01_Cliente ON 
+		E01_Telefono.nro_cliente = E01_Cliente.nro_cliente
+	\end{lstlisting}
+
+	\bigskip
+
+	\begin{lstlisting}[frame=single, tabsize=1]
+		// Query 10
+		SELECT E01_Cliente.nombre, E01_Cliente.apellido,
+		COALESCE(SUM(E01_Factura.total_con_iva),0) AS total_gastado FROM
+		E01_Cliente LEFT JOIN E01_Factura ON E01_Cliente.nro_cliente =
+		E01_Factura.nro_cliente GROUP BY E01_Cliente.nro_cliente
+	\end{lstlisting}
+
+	\newpage
+	
+	\subsection{MongoDB}
+	
+	\begin{lstlisting}[frame=single, tabsize=1]
+		// Query 1
+		const clients = await Cliente.find(
+		{ nombre: 'Wanda', apellido: 'Baker' }, 
+		{ 'telefonos.codigo_area': 1, 'telefonos.nro_telefono': 1, _id: 1 }
+		)
+		
+		const result = []
+		clients.forEach(client => {
+			client.telefonos.forEach(telefono => {
+				result.push({ 
+					codigo_area: telefono.codigo_area, 
+					nro_telefono: telefono.nro_telefono, 
+					nro_cliente: client._id 
+				})
+			})
+		})
+		
+		return result
+	\end{lstlisting}
+
+	\bigskip
+	
+	\begin{lstlisting}[frame=single, tabsize=1]
+		// Query 2
+		const clients = await Factura.aggregate([
+		{
+			$group: {
+				_id: '$nro_cliente',
+				count: { $sum: 1 }
+			}
+		},
+		{
+			$lookup: {
+				from: 'clientes',
+				localField: '_id',
+				foreignField: '_id',
+				as: 'cliente_info'
+			}
+		},
+		{
+			$unwind: '$cliente_info'
+		},
+		{
+			$project: {
+				_id: 0,
+				nro_cliente: '$_id',
+				nombre: '$cliente_info.nombre',
+				apellido: '$cliente_info.apellido', 
+				direccion: '$cliente_info.direccion',
+				activo: '$cliente_info.activo'
+			}
+		}
+		])
+		
+		return clients
+	\end{lstlisting}
+
+	\bigskip
+	
+	\begin{lstlisting}[frame=single, tabsize=1]
+		// Query 3
+		const clients = Cliente.aggregate([
+		{
+			$lookup: {
+				from: 'facturas',
+				localField: '_id',
+				foreignField: 'nro_cliente',
+				as: 'facturas'
+			}
+		},
+		{
+			$match: {
+				facturas: { $size: 0 }
+			}
+		},
+		{
+			$project: {
+				_id: 0,
+				nro_cliente: '$_id', 
+				nombre: 1,
+				apellido: 1,
+				direccion: 1,
+				activo: 1
+			}
+		}
+		])
+		
+		return clients
+	\end{lstlisting}
+
+	\bigskip
+	
+	\begin{lstlisting}[frame=single, tabsize=1]
+		// Query 4
+		const products = await Factura.aggregate([
+		{
+			$unwind: '$productos_comprados'
+		},
+		{
+			$group: {
+				_id: '$productos_comprados.codigo_producto',
+				totalCompras: { $sum: 1 }
+			}
+		},
+		{
+			$lookup: {
+				from: 'productos',
+				localField: '_id',
+				foreignField: '_id',
+				as: 'producto_info' 
+			}
+		},
+		{
+			$unwind: '$producto_info'
+		},
+		{
+			$project: {
+				_id: 0,
+				codigo_producto: '$_id',
+				marca: '$producto_info.marca',
+				nombre: '$producto_info.nombre',
+				descripcion: '$producto_info.descripcion',
+				precio: '$producto_info.precio',
+				stock: '$producto_info.stock'
+			}
+		}
+		])
+		return products
+	\end{lstlisting}
+
+	\bigskip
+	
+	\begin{lstlisting}[frame=single, tabsize=1]
+		// Query 5
+		const clients = await Cliente.aggregate([
+		{
+			$unwind: '$telefonos'
+		},
+		{
+			$project: {
+				nro_cliente: '$_id',
+				nombre: 1,
+				apellido: 1,
+				direccion: 1,
+				activo: 1,
+				codigo_area: '$telefonos.codigo_area',
+				nro_telefono: '$telefonos.nro_telefono',
+				tipo: '$telefonos.tipo',
+				_id: 0
+			}
+		}
+		])
+		return clients
+	\end{lstlisting}
+
+	\bigskip
+	
+	\begin{lstlisting}[frame=single, tabsize=1]
+		// Query 6
+		const clients = await Cliente.aggregate([
+		{
+			$lookup: {
+				from: 'facturas',
+				localField: '_id',
+				foreignField: 'nro_cliente',
+				as: 'facturas'
+			}
+		},
+		{
+			$project: {
+				_id: 0,
+				nro_cliente: '$_id',
+				nombre: 1,
+				apellido: 1,
+				direccion: 1,
+				activo: 1,
+				cantidad_facturas: { $size: '$facturas' }
+			}
+		}
+		])
+		
+		return clients
+	\end{lstlisting}
+
+	\bigskip
+	
+	\begin{lstlisting}[frame=single, tabsize=1]
+		// Query 7
+		const invoices = await Factura.aggregate([
+		{
+			$lookup: {
+				from: 'clientes',
+				localField: 'nro_cliente',
+				foreignField: '_id',
+				as: 'cliente'
+			}
+		},
+		{
+			$match: {
+				'cliente.nombre': 'Pandora',
+				'cliente.apellido': 'Tate'
+			}
+		},
+		{
+			$project: {
+				_id: 0,
+				nro_factura: '$_id',
+				fecha: 1,
+				total_sin_iva: 1,
+				total_con_iva: 1,
+				nro_cliente: 1
+			}
+		}
+		])
+		
+		return invoices
+	\end{lstlisting}
+
+	\bigskip
+	
+	\begin{lstlisting}[frame=single, tabsize=1]
+		// Query 8
+		const invoices = await Factura.aggregate([
+		{
+			$lookup: {
+				from: 'productos',
+				localField: 'productos_comprados.codigo_producto',
+				foreignField: '_id',
+				as: 'productos'
+			}
+		},
+		{
+			$match: {
+				'productos.marca': 'In Faucibus Inc.'
+			}
+		},
+		{
+			$project: {
+				_id: 0,
+				nro_factura: '$_id',
+				fecha: 1,
+				total_sin_iva: 1,
+				total_con_iva: 1,
+				nro_cliente: 1
+			}
+		},
+		{
+			$unset: 'productos_comprados'
+		}
+		])
+		
+		return invoices
+	\end{lstlisting}
+
+	\bigskip
+	
+	\begin{lstlisting}[frame=single, tabsize=1]
+		// Query 9
+		const phones = await Cliente.aggregate([
+		{
+			$unwind: '$telefonos'
+		},
+		{
+			$project: {
+				codigo_area: '$telefonos.codigo_area',
+				nro_telefono: '$telefonos.nro_telefono',
+				tipo: '$telefonos.tipo',
+				_id: 0, // Excluir el campo _id del cliente
+				nro_cliente: '$_id',
+				nombre: 1,
+				apellido: 1
+			}
+		}
+		])
+		
+		return phones
+	\end{lstlisting}
+	
+	\bigskip
+	
+	\begin{lstlisting}[frame=single, tabsize=1]
+		// Query 10
+		const clients = await Factura.aggregate([
+		{
+			$lookup: {
+				from: 'clientes',
+				localField: 'nro_cliente',
+				foreignField: '_id',
+				as: 'cliente'
+			}
+		},
+		{
+			$unwind: '$cliente'
+		},
+		{
+			$group: {
+				_id: {
+					clienteId: '$cliente._id',
+					nombre: '$cliente.nombre',
+					apellido: '$cliente.apellido'
+				},
+				total_gastado: { $sum: '$total_con_iva' }
+			}
+		},
+		{
+			$project: {
+				_id: 0,
+				nombre: '$_id.nombre',
+				apellido: '$_id.apellido',
+				total_gastado: 1
+			}
+		}
+		])
+		
+		return clients
+	\end{lstlisting}
+	
+\end{document}

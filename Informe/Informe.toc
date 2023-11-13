@@ -1,0 +1,15 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{\numberline {1}Introducción}{2}{section.1}%
+\contentsline {section}{\numberline {2}Estructura del Proyecto. Carpetas y Archivos Importantes}{3}{section.2}%
+\contentsline {section}{\numberline {3}Migración a NoSQL}{5}{section.3}%
+\contentsline {section}{\numberline {4}Implementación y uso de la API}{6}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Endpoints de la API}{6}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Consultas}{6}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Vistas}{6}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}CRUD para Clientes}{6}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}CRUD para Productos}{7}{subsection.4.5}%
+\contentsline {section}{\numberline {5}Uso de la Página}{8}{section.5}%
+\contentsline {section}{\numberline {6}Dockerización del Proyecto}{9}{section.6}%
+\contentsline {section}{\numberline {7}Consultas}{10}{section.7}%
+\contentsline {subsection}{\numberline {7.1}PostgreSQL}{10}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}MongoDB}{12}{subsection.7.2}%
