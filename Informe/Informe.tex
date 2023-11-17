@@ -87,6 +87,34 @@
 
 	\newpage
 	
+	\section{Decisiones de diseño}
+	
+	\subsection {Modelo de datos - Migración}
+	
+	Se embebieron los datos que provenían de teléfonos y de detalles de facturas en los documentos de clientes y de facturas, respectivamente.
+	
+	\bigskip
+	
+	La decisión de embeber los teléfonos fue porque no es una empresa de telefonía, ni algún sistema que requiera mantener los teléfonos no usados por los clientes, por lo que siempre van a pertenecer a un único cliente cada uno.
+	
+	\bigskip
+	
+	La decisión de embeber el detalle de la factura (cantidades para cada producto) se debe a que se quieren realizar consultas directamente en la factura y obtener todo el detalle posible de dicha factura.
+	
+	\bigskip
+	
+	Luego se tomaron decisiones menores, como quitar la columna IVA ya que era una cosntante.
+	
+	\subsection {Frameworks utilizados}
+	
+	\begin{enumerate}
+		\item React: para el Frontend. Por una cuestión de aprendizaje.
+		\item NodeJS: para la API. Ejecuta JS del lado del servidor.
+		\item Mongoose: ODM para conectar MongoDB y NodeJS.
+	\end{enumerate}
+	
+	\newpage
+	
 	\section{Migración a NoSQL}
 	
 	\textbf{Migración a NoSQL en MongoDB:}

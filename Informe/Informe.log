@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.7) (preloaded format=pdflatex 2022.10.12)  13 NOV 2023 12:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.7) (preloaded format=pdflatex 2022.10.12)  17 NOV 2023 18:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -538,7 +538,7 @@ Package hyperref Info: Link coloring OFF on input line 32.
 \@outlinefile=\write3
 \openout3 = `Informe.out'.
 
-<LogoITBA.png, id=59, 564.1878pt x 277.035pt>
+<LogoITBA.png, id=71, 564.1878pt x 277.035pt>
 File: LogoITBA.png Graphic file (type png)
 <use LogoITBA.png>
 Package pdftex.def Info: LogoITBA.png  used on input line 36.
@@ -549,12 +549,12 @@ Package pdftex.def Info: LogoITBA.png  used on input line 36.
 ng>] (Informe.toc
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 6.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 5.
 
 (C:\Users\Tomas\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 6.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 5.
 
 (C:\Users\Tomas\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -562,7 +562,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 \tf@toc=\write4
 \openout4 = `Informe.toc'.
 
-<./LogoITBA.png, id=84, 564.1878pt x 277.035pt>
+<./LogoITBA.png, id=99, 564.1878pt x 277.035pt>
 File: ./LogoITBA.png Graphic file (type png)
 <use ./LogoITBA.png>
 Package pdftex.def Info: ./LogoITBA.png  used on input line 52.
@@ -642,19 +642,19 @@ LaTeX Info: Redefining \% on input line 116.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 15.13202pt, for example:
-(fancyhdr)                \setlength{\headheight}{15.13202pt}.
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 
-(fancyhdr)                \addtolength{\topmargin}{-3.13202pt}.
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [5]
 File: ./LogoITBA.png Graphic file (type png)
 <use ./LogoITBA.png>
-Package pdftex.def Info: ./LogoITBA.png  used on input line 182.
+Package pdftex.def Info: ./LogoITBA.png  used on input line 144.
 (pdftex.def)             Requested size: 56.9055pt x 27.94183pt.
-LaTeX Info: Redefining \. on input line 182.
-LaTeX Info: Redefining \% on input line 182.
+LaTeX Info: Redefining \. on input line 144.
+LaTeX Info: Redefining \% on input line 144.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -667,10 +667,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [6]
 File: ./LogoITBA.png Graphic file (type png)
 <use ./LogoITBA.png>
-Package pdftex.def Info: ./LogoITBA.png  used on input line 204.
+Package pdftex.def Info: ./LogoITBA.png  used on input line 210.
 (pdftex.def)             Requested size: 56.9055pt x 27.94183pt.
-LaTeX Info: Redefining \. on input line 204.
-LaTeX Info: Redefining \% on input line 204.
+LaTeX Info: Redefining \. on input line 210.
+LaTeX Info: Redefining \% on input line 210.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -683,10 +683,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [7]
 File: ./LogoITBA.png Graphic file (type png)
 <use ./LogoITBA.png>
-Package pdftex.def Info: ./LogoITBA.png  used on input line 231.
+Package pdftex.def Info: ./LogoITBA.png  used on input line 232.
 (pdftex.def)             Requested size: 56.9055pt x 27.94183pt.
-LaTeX Info: Redefining \. on input line 231.
-LaTeX Info: Redefining \% on input line 231.
+LaTeX Info: Redefining \. on input line 232.
+LaTeX Info: Redefining \% on input line 232.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -699,10 +699,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [8]
 File: ./LogoITBA.png Graphic file (type png)
 <use ./LogoITBA.png>
-Package pdftex.def Info: ./LogoITBA.png  used on input line 249.
+Package pdftex.def Info: ./LogoITBA.png  used on input line 259.
 (pdftex.def)             Requested size: 56.9055pt x 27.94183pt.
-LaTeX Info: Redefining \. on input line 249.
-LaTeX Info: Redefining \% on input line 249.
+LaTeX Info: Redefining \. on input line 259.
+LaTeX Info: Redefining \% on input line 259.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -713,33 +713,33 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-3.13202pt}.
 
 [9]
+File: ./LogoITBA.png Graphic file (type png)
+<use ./LogoITBA.png>
+Package pdftex.def Info: ./LogoITBA.png  used on input line 277.
+(pdftex.def)             Requested size: 56.9055pt x 27.94183pt.
+LaTeX Info: Redefining \. on input line 277.
+LaTeX Info: Redefining \% on input line 277.
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 15.13202pt, for example:
+(fancyhdr)                \setlength{\headheight}{15.13202pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-3.13202pt}.
+
+[10]
 LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 2
-66.
+94.
  (C:\Users\Tomas\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
 File: ./LogoITBA.png Graphic file (type png)
 <use ./LogoITBA.png>
-Package pdftex.def Info: ./LogoITBA.png  used on input line 305.
+Package pdftex.def Info: ./LogoITBA.png  used on input line 333.
 (pdftex.def)             Requested size: 56.9055pt x 27.94183pt.
-LaTeX Info: Redefining \. on input line 305.
-LaTeX Info: Redefining \% on input line 305.
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[10]
-File: ./LogoITBA.png Graphic file (type png)
-<use ./LogoITBA.png>
-Package pdftex.def Info: ./LogoITBA.png  used on input line 345.
-(pdftex.def)             Requested size: 56.9055pt x 27.94183pt.
-LaTeX Info: Redefining \. on input line 345.
-LaTeX Info: Redefining \% on input line 345.
+LaTeX Info: Redefining \. on input line 333.
+LaTeX Info: Redefining \% on input line 333.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -752,10 +752,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [11]
 File: ./LogoITBA.png Graphic file (type png)
 <use ./LogoITBA.png>
-Package pdftex.def Info: ./LogoITBA.png  used on input line 388.
+Package pdftex.def Info: ./LogoITBA.png  used on input line 373.
 (pdftex.def)             Requested size: 56.9055pt x 27.94183pt.
-LaTeX Info: Redefining \. on input line 388.
-LaTeX Info: Redefining \% on input line 388.
+LaTeX Info: Redefining \. on input line 373.
+LaTeX Info: Redefining \% on input line 373.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -768,10 +768,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [12]
 File: ./LogoITBA.png Graphic file (type png)
 <use ./LogoITBA.png>
-Package pdftex.def Info: ./LogoITBA.png  used on input line 427.
+Package pdftex.def Info: ./LogoITBA.png  used on input line 416.
 (pdftex.def)             Requested size: 56.9055pt x 27.94183pt.
-LaTeX Info: Redefining \. on input line 427.
-LaTeX Info: Redefining \% on input line 427.
+LaTeX Info: Redefining \. on input line 416.
+LaTeX Info: Redefining \% on input line 416.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -784,10 +784,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [13]
 File: ./LogoITBA.png Graphic file (type png)
 <use ./LogoITBA.png>
-Package pdftex.def Info: ./LogoITBA.png  used on input line 466.
+Package pdftex.def Info: ./LogoITBA.png  used on input line 455.
 (pdftex.def)             Requested size: 56.9055pt x 27.94183pt.
-LaTeX Info: Redefining \. on input line 466.
-LaTeX Info: Redefining \% on input line 466.
+LaTeX Info: Redefining \. on input line 455.
+LaTeX Info: Redefining \% on input line 455.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -800,10 +800,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [14]
 File: ./LogoITBA.png Graphic file (type png)
 <use ./LogoITBA.png>
-Package pdftex.def Info: ./LogoITBA.png  used on input line 509.
+Package pdftex.def Info: ./LogoITBA.png  used on input line 494.
 (pdftex.def)             Requested size: 56.9055pt x 27.94183pt.
-LaTeX Info: Redefining \. on input line 509.
-LaTeX Info: Redefining \% on input line 509.
+LaTeX Info: Redefining \. on input line 494.
+LaTeX Info: Redefining \% on input line 494.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -816,10 +816,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [15]
 File: ./LogoITBA.png Graphic file (type png)
 <use ./LogoITBA.png>
-Package pdftex.def Info: ./LogoITBA.png  used on input line 547.
+Package pdftex.def Info: ./LogoITBA.png  used on input line 537.
 (pdftex.def)             Requested size: 56.9055pt x 27.94183pt.
-LaTeX Info: Redefining \. on input line 547.
-LaTeX Info: Redefining \% on input line 547.
+LaTeX Info: Redefining \. on input line 537.
+LaTeX Info: Redefining \% on input line 537.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -832,10 +832,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [16]
 File: ./LogoITBA.png Graphic file (type png)
 <use ./LogoITBA.png>
-Package pdftex.def Info: ./LogoITBA.png  used on input line 586.
+Package pdftex.def Info: ./LogoITBA.png  used on input line 575.
 (pdftex.def)             Requested size: 56.9055pt x 27.94183pt.
-LaTeX Info: Redefining \. on input line 586.
-LaTeX Info: Redefining \% on input line 586.
+LaTeX Info: Redefining \. on input line 575.
+LaTeX Info: Redefining \% on input line 575.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -848,10 +848,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [17]
 File: ./LogoITBA.png Graphic file (type png)
 <use ./LogoITBA.png>
-Package pdftex.def Info: ./LogoITBA.png  used on input line 625.
+Package pdftex.def Info: ./LogoITBA.png  used on input line 614.
 (pdftex.def)             Requested size: 56.9055pt x 27.94183pt.
-LaTeX Info: Redefining \. on input line 625.
-LaTeX Info: Redefining \% on input line 625.
+LaTeX Info: Redefining \. on input line 614.
+LaTeX Info: Redefining \% on input line 614.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -864,10 +864,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [18]
 File: ./LogoITBA.png Graphic file (type png)
 <use ./LogoITBA.png>
-Package pdftex.def Info: ./LogoITBA.png  used on input line 664.
+Package pdftex.def Info: ./LogoITBA.png  used on input line 653.
 (pdftex.def)             Requested size: 56.9055pt x 27.94183pt.
-LaTeX Info: Redefining \. on input line 664.
-LaTeX Info: Redefining \% on input line 664.
+LaTeX Info: Redefining \. on input line 653.
+LaTeX Info: Redefining \% on input line 653.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -880,10 +880,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [19]
 File: ./LogoITBA.png Graphic file (type png)
 <use ./LogoITBA.png>
-Package pdftex.def Info: ./LogoITBA.png  used on input line 667.
+Package pdftex.def Info: ./LogoITBA.png  used on input line 692.
 (pdftex.def)             Requested size: 56.9055pt x 27.94183pt.
-LaTeX Info: Redefining \. on input line 667.
-LaTeX Info: Redefining \% on input line 667.
+LaTeX Info: Redefining \. on input line 692.
+LaTeX Info: Redefining \% on input line 692.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -893,18 +893,34 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[20] (Informe.aux
+[20]
+File: ./LogoITBA.png Graphic file (type png)
+<use ./LogoITBA.png>
+Package pdftex.def Info: ./LogoITBA.png  used on input line 695.
+(pdftex.def)             Requested size: 56.9055pt x 27.94183pt.
+LaTeX Info: Redefining \. on input line 695.
+LaTeX Info: Redefining \% on input line 695.
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[21] (Informe.aux
 LaTeX Info: Redefining \. on input line 22.
 LaTeX Info: Redefining \% on input line 22.
 )
 Package rerunfilecheck Info: File `Informe.out' has not changed.
-(rerunfilecheck)             Checksum: 5F5C47A31A8440E318D983652649EE93;2065.
+(rerunfilecheck)             Checksum: D9B95D81C1E650223F29F0F5613510FA;2592.
  ) 
 Here is how much of TeX's memory you used:
- 16532 strings out of 478338
- 262098 string characters out of 2836699
- 594067 words of memory out of 3000000
- 34333 multiletter control sequences out of 15000+600000
+ 16542 strings out of 478338
+ 262206 string characters out of 2836699
+ 594070 words of memory out of 3000000
+ 34336 multiletter control sequences out of 15000+600000
  514919 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  72i,19n,77p,561b,1956s stack positions out of 10000i,1000n,20000p,200000b,80000s
@@ -913,9 +929,9 @@ Here is how much of TeX's memory you used:
 /Users/Tomas/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:
 /Users/Tomas/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:
 /Users/Tomas/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Informe.pdf (21 pages, 242915 bytes).
+Output written on Informe.pdf (22 pages, 247634 bytes).
 PDF statistics:
- 625 PDF objects out of 1000 (max. 8388607)
- 390 named destinations out of 1000 (max. 500000)
- 123 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 650 PDF objects out of 1000 (max. 8388607)
+ 397 named destinations out of 1000 (max. 500000)
+ 147 words of extra memory for PDF output out of 10000 (max. 10000000)
 
